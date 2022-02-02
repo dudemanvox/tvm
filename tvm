@@ -50,7 +50,8 @@ elif [ "$1" == "install" ]; then
     done
   else
     # inside terraform-.x.y.z.zip is a file named terraform to be renamed terraform-x.y.z
-    download_dir=`mktemp -d --tmpdir="$TERRAFORMS_DIR"`
+    TMPDIR=$TERRAFORMS_DIR
+    download_dir=`mktemp -d`
     download="$download_dir/download.zip"
     install="$TERRAFORMS_DIR/terraform-$2"
     if wget --quiet -O "$download" https://releases.hashicorp.com/terraform/$2/terraform_$2_$ARCH.zip; then
